@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/java/!svn/ver/323/trunk/SoundDemo/src/system/sound/softsynth/oscillator
+END
+AbstractToneChannel.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/java/!svn/ver/323/trunk/SoundDemo/src/system/sound/softsynth/oscillator/AbstractToneChannel.java
+END
+IToneOscillator.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/java/!svn/ver/274/trunk/SoundDemo/src/system/sound/softsynth/oscillator/IToneOscillator.java
+END
+ToneBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/java/!svn/ver/274/trunk/SoundDemo/src/system/sound/softsynth/oscillator/ToneBean.java
+END
+AbstractTableWave.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/java/!svn/ver/323/trunk/SoundDemo/src/system/sound/softsynth/oscillator/AbstractTableWave.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/java/!svn/ver/274/trunk/SoundDemo/src/system/sound/softsynth/oscillator/package.html
+END

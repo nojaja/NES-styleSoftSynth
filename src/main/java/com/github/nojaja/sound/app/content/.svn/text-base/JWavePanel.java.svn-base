@@ -1,0 +1,77 @@
+package system.content;
+
+import system.sound.softsynth.ToneChannel;
+
+import java.awt.*;
+import javax.swing.*;
+
+/**
+ * 波形表示パネル
+ * @author ric
+ *
+ */
+public class JWavePanel extends JPanel{   
+
+	private static final long serialVersionUID = 1L;
+	
+	public ToneChannel toneChannel = null;
+	public String panelName = "";
+	
+	public JWavePanel(String _panelName , ToneChannel _toneChannel) {
+		super();
+		setPreferredSize(new Dimension(240, 150));
+		toneChannel = _toneChannel;
+		panelName = _panelName;
+		this.setBackground(Color.black);
+	}
+
+	public void update(Graphics g)
+	{
+		paint(g);
+	}
+
+	/**
+	 * 描画処理
+	 */
+	public void paint(Graphics g)
+	{
+		super.paint(g);
+		g.setColor(Color.white);
+		g.drawString(panelName, 10, 20);  
+		if(toneChannel==null)return;
+		byte[] dispData = toneChannel._waveData;
+		int length = dispData.length/2;
+		
+		if(dispData!=null && dispData.length>2){   
+			int xx[]=new int[length];   
+			int yy[]=new int[length];   
+			int yyoffset=this.getHeight()/2;   
+			double xdelta=(double)this.getWidth()/(double)(length);   
+			double ydelta=this.getHeight()/64.0;   
+			int j = 0;
+			int i = 0;
+			int k = 0;
+
+			/*波形のクリッピング*/
+//				while((i<dispData.length)&&(dispData[i] > 0)){
+//					i=i+2;
+//					k++;
+//				}
+//				while((i<dispData.length)&&(dispData[i] < 0)){
+//					i=i+2;
+//					k++;
+//				}
+			while(i<dispData.length){
+				xx[j]=(int)(xdelta*j);   
+				yy[j]=(int)(ydelta*dispData[i])+yyoffset;
+				j++;
+				i=i+2;
+			}   
+			g.setColor(Color.yellow);
+			g.drawLine(0, yyoffset, this.getWidth(), yyoffset);
+			g.setColor(Color.green);
+			g.drawPolyline(xx, yy,length-k);
+		}   
+		
+	}
+}
