@@ -39,7 +39,7 @@ public abstract class AbstractTableWave implements IToneOscillator {
 		int y = 0;//生成データ一時格納変数（音量）
 
 		/*音源テーブルの再生速度設定　タイミング管理*/
-		double stapTiming = _amplitude / (double)dutyLookup.length-1;
+		double stapTiming = _amplitude / (double)(dutyLookup.length-toneLoopPoint())-1;
 		/*音源テーブルの再生速度設定2　ステップ管理*/
 		double step = 1;
 
