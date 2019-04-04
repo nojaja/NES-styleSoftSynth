@@ -2,6 +2,7 @@ package com.github.nojaja.sound.softsynth.oscillator.impl;
 
 import com.github.nojaja.sound.softsynth.oscillator.AbstractTableWave;
 import com.github.nojaja.sound.softsynth.oscillator.IToneOscillator;
+import com.github.nojaja.sound.softsynth.oscillator.ToneBean;
 
 /**
  * 矩形波Wave音源テーブルクラス
@@ -13,12 +14,25 @@ import com.github.nojaja.sound.softsynth.oscillator.IToneOscillator;
  */
 public class RectWave extends AbstractTableWave {
 
+	/*音源テーブル設定*/
+	public int dutyLookups[][]= {//Waveテーブル
+			{13,-13,-13,-13,-13,-13,-13,-13 },// Duty比12.5%
+			{13, 13,-13,-13,-13,-13,-13,-13 },// Duty比25.0%
+			{13, 13, 13, 13,-13,-13,-13,-13 },// Duty比50.0%
+			{13, 13, 13, 13, 13, 13,-13,-13 },// Duty比75.0%
+			
+			{13,-13,-13,-13,-13,-13,-13,-13,  // Duty比12.5%
+			 13, 13,-13,-13,-13,-13,-13,-13,  // Duty比25.0%
+			 13, 13, 13, 13,-13,-13,-13,-13}  // Duty比50.0%
+	};
+	
 	/**
 	 * コンストラクタ
 	 *
 	 */
 	public RectWave() {
 		/*音源テーブル設定*/
+		
 		dutyLookup = new int[]{
 				// 13, 13,  -13, -13// Duty比25%=75%
 				//  2,3,3, 2,  -2, -3,-3,-2// Duty比25%=75%
@@ -57,8 +71,21 @@ public class RectWave extends AbstractTableWave {
 			/*音量のピーク値を取得しておく*/
 			dutyMax = Math.max(dutyMax, dutyLookup[i]);
 		}
+		for (int i = 0; i < dutyLookups.length; i++) {
+			for (int j = 0; j < dutyLookups[i].length; j++) {
+				/* byte→int だと音量が小さくなるので32倍する*/
+				dutyLookups[i][j]= -dutyLookups[i][j]*24;
+				/*音量のピーク値を取得しておく*/
+				dutyMax = Math.max(dutyMax, dutyLookups[i][j]);
+			}
+		}
+		
 	}
 
+	public int makeTone(byte[] _data,int sampleRate,ToneBean tone) {
+		dutyLookup = dutyLookups[tone.getVariation()];
+		return super.makeTone(_data, sampleRate, tone);
+	}
 
 	/**(non-Javadoc)
 	 * @see IToneOscillator

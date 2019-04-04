@@ -275,6 +275,18 @@ public class ToneChannel extends AbstractToneChannel implements Receiver {
 					}
 				}
 				break;
+				case 0x60://variation
+					for (int i = 0; i < toneList.size(); i++) {
+						ToneBean tone = toneList.get(i);
+						if(tone==null)continue;
+						tone.setVariation(sm.getData2());
+					}
+					for (int i = 0; i < tonePool.size(); i++) {
+						ToneBean tone = tonePool.get(i);
+						if(tone==null)continue;
+						tone.setVariation(sm.getData2());
+					}
+					break;
 				case 0x61://Portamento
 					break;
 				case 0x62://NRPN

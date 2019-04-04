@@ -13,6 +13,8 @@ public class ToneBean {
 	public double amplitude;				// 波長(バイト数)
 
 
+	private int variation = 0; //Sound Variation
+	
 	private float concert_pitch = 440;
 	private int note = 1;
 	private float pitch = 0;
@@ -185,6 +187,7 @@ public class ToneBean {
 		vibratoRate = 0.5; 
 		vibratoDelay = 60; 
 		vibratoCount = 0; 
+		variation = 0;
 	}
 
 
@@ -194,5 +197,13 @@ public class ToneBean {
 	 */
 	public int getNote() {
 		return note;
+	}
+
+	public int getVariation() {
+		return variation;
+	}
+
+	public void setVariation(int variation) {
+		this.variation = variation;
 	}
 }
