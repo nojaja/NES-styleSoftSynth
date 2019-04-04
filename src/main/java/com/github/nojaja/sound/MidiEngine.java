@@ -75,8 +75,11 @@ public class MidiEngine {
 		toneChannelList.put("CH02", new ToneChannel(64,new RectWave(),1)); 
 		toneChannelList.put("CH03", new ToneChannel(64,new TryWave(),2)); 
 		//toneChannelList.put("CH03", new ToneChannel(64,new TryWaveSim(),2));
-		toneChannelList.put("CH10", new ToneChannel(64,new NoisWave(),9));
-		//		toneChannelList.put("CH10", new ToneChannel(64,new DataClipWave("wav/^Kick.wav"),9));
+		//toneChannelList.put("CH10", new ToneChannel(64,new NoisWave(),9));
+		toneChannelList.put("CH10", new ToneChannel(64,new NesNoisWave(false),9));
+		//toneChannelList.put("CH04", new ToneChannel(64,new NesNoisWave(true),3));
+		
+		//toneChannelList.put("CH10", new ToneChannel(64,new DataClipWave("wav/^Kick.wav"),9));
 
 		toneChannelList.put("CH04", new ToneChannel(64,new RectWave(),3)); 
 		toneChannelList.put("CH05", new ToneChannel(64,new RectWave(),4)); 
